@@ -221,6 +221,17 @@ export function Methodology({ data }: MethodologyProps) {
                   {formatGeneratedAt(data.generated_at)}
                 </span>
               </span>
+              <span>
+                <span className="text-ink-400">source: </span>
+                <a
+                  href="https://github.com/pranavgorantla/posthog-impact"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink-600 hover:text-ink-900 transition-colors"
+                >
+                  github.com/pranavgorantla/posthog-impact
+                </a>
+              </span>
             </div>
           </div>
         </div>
