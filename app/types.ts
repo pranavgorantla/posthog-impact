@@ -40,6 +40,7 @@ export interface Top5Entry {
   score: number;
   pillars: Pillars;
   raw_metrics: RawMetrics;
+  primary_scopes: string[];
   narrative: string;
 }
 
@@ -49,12 +50,23 @@ export interface Top30Entry {
   pillars: Pillars;
 }
 
+export interface PoolBaseline {
+  median_prs_total: number;
+  median_feat: number;
+  median_fix: number;
+  median_reviews_given: number;
+  median_substantive_reviews: number;
+  median_distinct_scopes: number;
+  median_active_weeks: number;
+}
+
 export interface Methodology {
   weights: Record<CCType, number>;
   conventional_commit_types: string[];
   bot_patterns: string[];
   score_formula: string;
   pool_filter: string;
+  pool_baseline?: PoolBaseline;
 }
 
 export interface DashboardData {
@@ -66,4 +78,5 @@ export interface DashboardData {
   methodology: Methodology;
   top_5: Top5Entry[];
   top_30_for_chart: Top30Entry[];
+  pool_scores?: number[];
 }

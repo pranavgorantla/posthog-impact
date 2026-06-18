@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T00:58:49.914Z",
+  "generated_at": "2026-06-18T01:14:42.157Z",
   "window": {
     "start": "2026-03-20",
     "end": "2026-06-18"
@@ -46,17 +46,26 @@
       "explicit list"
     ],
     "score_formula": "0.40 * shipped_norm + 0.35 * leverage_norm + 0.25 * reach_norm",
-    "pool_filter": "prs_total >= 5 OR reviews_given >= 10"
+    "pool_filter": "prs_total >= 5 OR reviews_given >= 10",
+    "pool_baseline": {
+      "median_prs_total": 54,
+      "median_feat": 15,
+      "median_fix": 18,
+      "median_reviews_given": 67,
+      "median_substantive_reviews": 5,
+      "median_distinct_scopes": 8,
+      "median_active_weeks": 11
+    }
   },
   "top_5": [
     {
       "login": "Gilbert09",
       "avatar_url": "https://github.com/Gilbert09.png",
-      "score": 0.7534,
+      "score": 0.7623,
       "pillars": {
         "shipped": 1,
         "leverage": 0.4386,
-        "reach": 0.7995
+        "reach": 0.8352
       },
       "raw_metrics": {
         "prs_total": 512,
@@ -140,19 +149,19 @@
         ],
         "distinct_scopes_count": 59,
         "active_weeks": [
-          "2026-W12",
-          "2026-W13",
-          "2026-W14",
-          "2026-W15",
-          "2026-W16",
-          "2026-W17",
-          "2026-W18",
-          "2026-W20",
-          "2026-W21",
-          "2026-W22",
-          "2026-W23",
-          "2026-W24",
-          "2026-W25"
+          "wk0",
+          "wk1",
+          "wk2",
+          "wk3",
+          "wk4",
+          "wk5",
+          "wk6",
+          "wk7",
+          "wk8",
+          "wk9",
+          "wk10",
+          "wk11",
+          "wk12"
         ],
         "active_weeks_count": 13,
         "reviews_given": 207,
@@ -160,6 +169,11 @@
         "unique_authors_reviewed": 42,
         "median_time_to_merge_hours": 17.9
       },
+      "primary_scopes": [
+        "data-warehouse",
+        "postgres",
+        "bigquery"
+      ],
       "narrative": "Feature builder across 59 areas of the codebase, active across 13 weeks."
     },
     {
@@ -282,28 +296,32 @@
         ],
         "distinct_scopes_count": 88,
         "active_weeks": [
-          "2026-W12",
-          "2026-W13",
-          "2026-W14",
-          "2026-W15",
-          "2026-W16",
-          "2026-W17",
-          "2026-W18",
-          "2026-W19",
-          "2026-W20",
-          "2026-W21",
-          "2026-W22",
-          "2026-W23",
-          "2026-W24",
-          "2026-W25"
+          "wk0",
+          "wk1",
+          "wk2",
+          "wk3",
+          "wk4",
+          "wk5",
+          "wk6",
+          "wk7",
+          "wk8",
+          "wk9",
+          "wk10",
+          "wk11",
+          "wk12"
         ],
-        "active_weeks_count": 14,
+        "active_weeks_count": 13,
         "reviews_given": 207,
         "substantive_reviews_given": 18,
         "unique_authors_reviewed": 50,
         "median_time_to_merge_hours": 7.2
       },
-      "narrative": "Feature builder across 88 areas of the codebase, active across 14 weeks."
+      "primary_scopes": [
+        "taxonomic-filter",
+        "frontend",
+        "user-interviews"
+      ],
+      "narrative": "Feature builder across 88 areas of the codebase, active across 13 weeks."
     },
     {
       "login": "sampennington",
@@ -376,28 +394,113 @@
         ],
         "distinct_scopes_count": 39,
         "active_weeks": [
-          "2026-W12",
-          "2026-W13",
-          "2026-W14",
-          "2026-W15",
-          "2026-W16",
-          "2026-W17",
-          "2026-W18",
-          "2026-W19",
-          "2026-W20",
-          "2026-W21",
-          "2026-W22",
-          "2026-W23",
-          "2026-W24",
-          "2026-W25"
+          "wk0",
+          "wk1",
+          "wk2",
+          "wk3",
+          "wk4",
+          "wk5",
+          "wk6",
+          "wk7",
+          "wk8",
+          "wk9",
+          "wk10",
+          "wk11",
+          "wk12"
         ],
-        "active_weeks_count": 14,
+        "active_weeks_count": 13,
         "reviews_given": 149,
         "substantive_reviews_given": 20,
         "unique_authors_reviewed": 28,
         "median_time_to_merge_hours": 7.7
       },
-      "narrative": "Wide-reaching contributor — touches 39 distinct areas over 14 active weeks."
+      "primary_scopes": [
+        "insights",
+        "hog-charts",
+        "funnels"
+      ],
+      "narrative": "Wide-reaching contributor — touches 39 distinct areas over 13 active weeks."
+    },
+    {
+      "login": "haacked",
+      "avatar_url": "https://github.com/haacked.png",
+      "score": 0.4599,
+      "pillars": {
+        "shipped": 0.1505,
+        "leverage": 0.6957,
+        "reach": 0.625
+      },
+      "raw_metrics": {
+        "prs_total": 108,
+        "prs_by_type": {
+          "feat": 27,
+          "fix": 40,
+          "perf": 1,
+          "refactor": 4,
+          "revert": 1,
+          "chore": 31,
+          "docs": 0,
+          "test": 3,
+          "build": 0,
+          "ci": 1,
+          "style": 0,
+          "other": 0
+        },
+        "weighted_shipped_score": 78,
+        "feat_count": 27,
+        "fix_count": 40,
+        "distinct_scopes": [
+          "flags",
+          "llma",
+          "cohorts",
+          "mcp",
+          "ci",
+          "nodejs",
+          "tests",
+          "oauth",
+          "audit",
+          "provisioning",
+          "dev",
+          "async-migrations",
+          "team",
+          "auth",
+          "personhog",
+          "common",
+          "hogli",
+          "test",
+          "redis",
+          "rust",
+          "ingestion",
+          "hypercache"
+        ],
+        "distinct_scopes_count": 22,
+        "active_weeks": [
+          "wk0",
+          "wk1",
+          "wk2",
+          "wk3",
+          "wk4",
+          "wk5",
+          "wk6",
+          "wk7",
+          "wk8",
+          "wk9",
+          "wk10",
+          "wk11",
+          "wk12"
+        ],
+        "active_weeks_count": 13,
+        "reviews_given": 160,
+        "substantive_reviews_given": 108,
+        "unique_authors_reviewed": 27,
+        "median_time_to_merge_hours": 18.9
+      },
+      "primary_scopes": [
+        "flags",
+        "cohorts",
+        "ci"
+      ],
+      "narrative": "Review leader — 108 substantive reviews for 27 engineers; ships steadily but leverage is the primary signal."
     },
     {
       "login": "webjunkie",
@@ -472,129 +575,42 @@
         ],
         "distinct_scopes_count": 41,
         "active_weeks": [
-          "2026-W12",
-          "2026-W13",
-          "2026-W14",
-          "2026-W15",
-          "2026-W16",
-          "2026-W17",
-          "2026-W18",
-          "2026-W19",
-          "2026-W20",
-          "2026-W21",
-          "2026-W22",
-          "2026-W23",
-          "2026-W24",
-          "2026-W25"
+          "wk0",
+          "wk1",
+          "wk2",
+          "wk3",
+          "wk4",
+          "wk5",
+          "wk6",
+          "wk7",
+          "wk8",
+          "wk9",
+          "wk10",
+          "wk11",
+          "wk12"
         ],
-        "active_weeks_count": 14,
+        "active_weeks_count": 13,
         "reviews_given": 180,
         "substantive_reviews_given": 32,
         "unique_authors_reviewed": 44,
         "median_time_to_merge_hours": 13.1
       },
-      "narrative": "Wide-reaching contributor — touches 41 distinct areas over 14 active weeks."
-    },
-    {
-      "login": "rafaeelaudibert",
-      "avatar_url": "https://github.com/rafaeelaudibert.png",
-      "score": 0.4528,
-      "pillars": {
-        "shipped": 0.179,
-        "leverage": 0.6073,
-        "reach": 0.6745
-      },
-      "raw_metrics": {
-        "prs_total": 116,
-        "prs_by_type": {
-          "feat": 46,
-          "fix": 28,
-          "perf": 0,
-          "refactor": 12,
-          "revert": 0,
-          "chore": 30,
-          "docs": 0,
-          "test": 0,
-          "build": 0,
-          "ci": 0,
-          "style": 0,
-          "other": 0
-        },
-        "weighted_shipped_score": 87.2,
-        "feat_count": 46,
-        "fix_count": 28,
-        "distinct_scopes": [
-          "signals",
-          "integrations",
-          "max",
-          "storybook",
-          "feature-flags",
-          "revenue_analytics",
-          "mcp",
-          "growth",
-          "web-analytics",
-          "oauth",
-          "legal_documents",
-          "quill",
-          "flags",
-          "search",
-          "settings",
-          "dags",
-          "health-alerts",
-          "health-checks",
-          "health",
-          "error-tracking",
-          "api",
-          "hog-functions",
-          "temporal",
-          "revenue-analytics",
-          "legal-docs",
-          "ai",
-          "cli",
-          "visual-review",
-          "navigation",
-          "semgrep",
-          "login",
-          "legal-documents",
-          "subscriptions",
-          "hogli",
-          "admin",
-          "stripe-app",
-          "actions"
-        ],
-        "distinct_scopes_count": 37,
-        "active_weeks": [
-          "2026-W12",
-          "2026-W13",
-          "2026-W14",
-          "2026-W15",
-          "2026-W16",
-          "2026-W17",
-          "2026-W19",
-          "2026-W20",
-          "2026-W21",
-          "2026-W22",
-          "2026-W23",
-          "2026-W24",
-          "2026-W25"
-        ],
-        "active_weeks_count": 13,
-        "reviews_given": 273,
-        "substantive_reviews_given": 67,
-        "unique_authors_reviewed": 41,
-        "median_time_to_merge_hours": 11.5
-      },
-      "narrative": "Steady contributor — 116 PRs merged, primarily `feat:` commits across 13 active weeks."
+      "primary_scopes": [
+        "devex",
+        "visual-review",
+        "ci"
+      ],
+      "narrative": "Wide-reaching contributor — touches 41 distinct areas over 13 active weeks."
     }
   ],
   "top_30_for_chart": [
     {
       "login": "Gilbert09",
-      "score": 0.7534,
+      "score": 0.7623,
       "pillars": {
         "shipped": 1,
         "leverage": 0.4386,
-        "reach": 0.7995
+        "reach": 0.8352
       }
     },
     {
@@ -616,6 +632,15 @@
       }
     },
     {
+      "login": "haacked",
+      "score": 0.4599,
+      "pillars": {
+        "shipped": 0.1505,
+        "leverage": 0.6957,
+        "reach": 0.625
+      }
+    },
+    {
       "login": "webjunkie",
       "score": 0.4537,
       "pillars": {
@@ -626,29 +651,20 @@
     },
     {
       "login": "rafaeelaudibert",
-      "score": 0.4528,
+      "score": 0.4521,
       "pillars": {
         "shipped": 0.179,
         "leverage": 0.6073,
-        "reach": 0.6745
-      }
-    },
-    {
-      "login": "haacked",
-      "score": 0.451,
-      "pillars": {
-        "shipped": 0.1505,
-        "leverage": 0.6957,
-        "reach": 0.5893
+        "reach": 0.6718
       }
     },
     {
       "login": "andrewm4894",
-      "score": 0.4276,
+      "score": 0.4365,
       "pillars": {
         "shipped": 0.4686,
         "leverage": 0.2814,
-        "reach": 0.5666
+        "reach": 0.6023
       }
     },
     {
@@ -662,65 +678,83 @@
     },
     {
       "login": "skoob13",
-      "score": 0.414,
+      "score": 0.4229,
       "pillars": {
         "shipped": 0.2919,
         "leverage": 0.4527,
-        "reach": 0.5552
+        "reach": 0.5909
       }
     },
     {
       "login": "gantoine",
-      "score": 0.3896,
+      "score": 0.389,
       "pillars": {
         "shipped": 0.064,
         "leverage": 0.6435,
-        "reach": 0.5552
-      }
-    },
-    {
-      "login": "MattPua",
-      "score": 0.3549,
-      "pillars": {
-        "shipped": 0.2909,
-        "leverage": 0.2697,
-        "reach": 0.5763
-      }
-    },
-    {
-      "login": "Piccirello",
-      "score": 0.3497,
-      "pillars": {
-        "shipped": 0.0549,
-        "leverage": 0.4372,
-        "reach": 0.6989
-      }
-    },
-    {
-      "login": "lricoy",
-      "score": 0.3426,
-      "pillars": {
-        "shipped": 0.2404,
-        "leverage": 0.2915,
-        "reach": 0.5779
+        "reach": 0.5524
       }
     },
     {
       "login": "mariusandra",
-      "score": 0.3375,
+      "score": 0.3547,
       "pillars": {
         "shipped": 0.1578,
         "leverage": 0.3977,
-        "reach": 0.5406
+        "reach": 0.6093
+      }
+    },
+    {
+      "login": "MattPua",
+      "score": 0.3535,
+      "pillars": {
+        "shipped": 0.2909,
+        "leverage": 0.2697,
+        "reach": 0.5708
+      }
+    },
+    {
+      "login": "lricoy",
+      "score": 0.3516,
+      "pillars": {
+        "shipped": 0.2404,
+        "leverage": 0.2915,
+        "reach": 0.6136
+      }
+    },
+    {
+      "login": "Piccirello",
+      "score": 0.3401,
+      "pillars": {
+        "shipped": 0.0549,
+        "leverage": 0.4372,
+        "reach": 0.6604
+      }
+    },
+    {
+      "login": "joshsny",
+      "score": 0.336,
+      "pillars": {
+        "shipped": 0.1373,
+        "leverage": 0.3768,
+        "reach": 0.5966
       }
     },
     {
       "login": "robbie-c",
-      "score": 0.3215,
+      "score": 0.3208,
       "pillars": {
         "shipped": 0.2143,
         "leverage": 0.1675,
-        "reach": 0.7086
+        "reach": 0.7059
+      }
+    },
+    {
+      "login": "vdekrijger",
+      "score": 0.3185,
+      "pillars": {
+        "shipped": 0.1819,
+        "leverage": 0.276,
+        "reach": 0.5966
       }
     },
     {
@@ -733,130 +767,235 @@
       }
     },
     {
-      "login": "joshsny",
-      "score": 0.3181,
+      "login": "richardsolomou",
+      "score": 0.3155,
       "pillars": {
-        "shipped": 0.1373,
-        "leverage": 0.3768,
-        "reach": 0.5252
+        "shipped": 0.1206,
+        "leverage": 0.3732,
+        "reach": 0.5468
       }
     },
     {
       "login": "yasen-posthog",
-      "score": 0.3159,
+      "score": 0.3153,
       "pillars": {
         "shipped": 0.163,
         "leverage": 0.2752,
-        "reach": 0.6177
-      }
-    },
-    {
-      "login": "vdekrijger",
-      "score": 0.3096,
-      "pillars": {
-        "shipped": 0.1819,
-        "leverage": 0.276,
-        "reach": 0.5609
-      }
-    },
-    {
-      "login": "richardsolomou",
-      "score": 0.3073,
-      "pillars": {
-        "shipped": 0.1206,
-        "leverage": 0.3732,
-        "reach": 0.5138
-      }
-    },
-    {
-      "login": "a-lider",
-      "score": 0.3012,
-      "pillars": {
-        "shipped": 0.1495,
-        "leverage": 0.2919,
-        "reach": 0.5568
+        "reach": 0.6149
       }
     },
     {
       "login": "thmsobrmlr",
-      "score": 0.2974,
+      "score": 0.3138,
       "pillars": {
         "shipped": 0.2007,
         "leverage": 0.2677,
-        "reach": 0.4935
-      }
-    },
-    {
-      "login": "TueHaulund",
-      "score": 0.2891,
-      "pillars": {
-        "shipped": 0.2015,
-        "leverage": 0.2277,
-        "reach": 0.5154
+        "reach": 0.5594
       }
     },
     {
       "login": "jonmcwest",
-      "score": 0.2885,
+      "score": 0.3056,
       "pillars": {
         "shipped": 0.3351,
         "leverage": 0.0672,
-        "reach": 0.5235
+        "reach": 0.5922
       }
     },
     {
-      "login": "MattBro",
-      "score": 0.2872,
+      "login": "TueHaulund",
+      "score": 0.2981,
       "pillars": {
-        "shipped": 0.2196,
-        "leverage": 0.1769,
-        "reach": 0.5495
-      }
-    },
-    {
-      "login": "lucasheriques",
-      "score": 0.287,
-      "pillars": {
-        "shipped": 0.1454,
-        "leverage": 0.2939,
-        "reach": 0.5041
-      }
-    },
-    {
-      "login": "veryayskiy",
-      "score": 0.2835,
-      "pillars": {
-        "shipped": 0.2355,
-        "leverage": 0.1594,
-        "reach": 0.5341
+        "shipped": 0.2015,
+        "leverage": 0.2277,
+        "reach": 0.5511
       }
     },
     {
       "login": "arthurdedeus",
-      "score": 0.2833,
+      "score": 0.2922,
       "pillars": {
         "shipped": 0.1676,
         "leverage": 0.2335,
-        "reach": 0.5381
+        "reach": 0.5739
       }
     },
     {
-      "login": "sakce",
-      "score": 0.2704,
+      "login": "a-lider",
+      "score": 0.2916,
       "pillars": {
-        "shipped": 0.13,
-        "leverage": 0.1991,
-        "reach": 0.595
+        "shipped": 0.1495,
+        "leverage": 0.2919,
+        "reach": 0.5184
+      }
+    },
+    {
+      "login": "MattBro",
+      "score": 0.2865,
+      "pillars": {
+        "shipped": 0.2196,
+        "leverage": 0.1769,
+        "reach": 0.5468
+      }
+    },
+    {
+      "login": "lucasheriques",
+      "score": 0.2864,
+      "pillars": {
+        "shipped": 0.1454,
+        "leverage": 0.2939,
+        "reach": 0.5013
+      }
+    },
+    {
+      "login": "dmarticus",
+      "score": 0.2806,
+      "pillars": {
+        "shipped": 0.155,
+        "leverage": 0.2665,
+        "reach": 0.5013
       }
     },
     {
       "login": "eli-r-ph",
-      "score": 0.2672,
+      "score": 0.2761,
       "pillars": {
         "shipped": 0.1668,
         "leverage": 0.1802,
-        "reach": 0.5495
+        "reach": 0.5852
+      }
+    },
+    {
+      "login": "fercgomes",
+      "score": 0.2749,
+      "pillars": {
+        "shipped": 0.1505,
+        "leverage": 0.1703,
+        "reach": 0.6206
       }
     }
+  ],
+  "pool_scores": [
+    0.7623,
+    0.7185,
+    0.4765,
+    0.4599,
+    0.4537,
+    0.4521,
+    0.4365,
+    0.4233,
+    0.4229,
+    0.389,
+    0.3547,
+    0.3535,
+    0.3516,
+    0.3401,
+    0.336,
+    0.3208,
+    0.3185,
+    0.3183,
+    0.3155,
+    0.3153,
+    0.3138,
+    0.3056,
+    0.2981,
+    0.2922,
+    0.2916,
+    0.2865,
+    0.2864,
+    0.2806,
+    0.2761,
+    0.2749,
+    0.2739,
+    0.2697,
+    0.2641,
+    0.2634,
+    0.2611,
+    0.2608,
+    0.2603,
+    0.2594,
+    0.2586,
+    0.2581,
+    0.2548,
+    0.252,
+    0.2514,
+    0.2512,
+    0.2505,
+    0.2494,
+    0.2492,
+    0.2452,
+    0.243,
+    0.2398,
+    0.2361,
+    0.2354,
+    0.235,
+    0.2312,
+    0.2214,
+    0.2161,
+    0.2129,
+    0.2117,
+    0.2103,
+    0.2045,
+    0.2043,
+    0.2016,
+    0.2007,
+    0.2,
+    0.1984,
+    0.1877,
+    0.1874,
+    0.1739,
+    0.1731,
+    0.1717,
+    0.169,
+    0.1666,
+    0.1621,
+    0.1565,
+    0.1548,
+    0.1547,
+    0.1498,
+    0.145,
+    0.145,
+    0.1403,
+    0.1287,
+    0.1234,
+    0.1229,
+    0.1211,
+    0.1205,
+    0.1201,
+    0.12,
+    0.107,
+    0.1057,
+    0.1057,
+    0.101,
+    0.0984,
+    0.098,
+    0.0917,
+    0.0914,
+    0.0887,
+    0.0882,
+    0.0871,
+    0.0865,
+    0.0852,
+    0.076,
+    0.0724,
+    0.0688,
+    0.0676,
+    0.066,
+    0.0634,
+    0.061,
+    0.0605,
+    0.0596,
+    0.0561,
+    0.0481,
+    0.0467,
+    0.0464,
+    0.0445,
+    0.0432,
+    0.0426,
+    0.0391,
+    0.0336,
+    0.0322,
+    0.0305,
+    0.0127
   ]
 }

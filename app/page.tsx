@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Header } from "@/components/Header";
 import { EngineerCard } from "@/components/EngineerCard";
-import { PillarChart } from "@/components/PillarChart";
+import { ScoreDistribution } from "@/components/ScoreDistribution";
 import { Methodology } from "@/components/Methodology";
 import { DashboardData } from "@/app/types";
 
@@ -88,9 +88,9 @@ export default function Page() {
           ))}
         </section>
 
-        {/* Pillar chart */}
+        {/* Score distribution */}
         <div className="mb-6">
-          <PillarChart top5={cards} />
+          <ScoreDistribution data={data} />
         </div>
 
         {/* Methodology */}

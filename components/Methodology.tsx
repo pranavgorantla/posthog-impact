@@ -168,6 +168,34 @@ export function Methodology({ data }: MethodologyProps) {
             </p>
           </div>
 
+          {/* Pool baseline */}
+          {data.methodology.pool_baseline && (
+            <div className="col-span-12">
+              <h3 className="mb-2 text-[12px] font-medium uppercase tracking-[0.08em] text-ink-500">
+                Pool baseline (medians across {data.pool_size} contributors)
+              </h3>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-1 font-mono text-[12px] sm:grid-cols-4">
+                {[
+                  ["PRs merged", data.methodology.pool_baseline.median_prs_total],
+                  ["feat: PRs", data.methodology.pool_baseline.median_feat],
+                  ["fix: PRs", data.methodology.pool_baseline.median_fix],
+                  ["reviews given", data.methodology.pool_baseline.median_reviews_given],
+                  ["substantive reviews", data.methodology.pool_baseline.median_substantive_reviews],
+                  ["distinct scopes", data.methodology.pool_baseline.median_distinct_scopes],
+                  ["active weeks", data.methodology.pool_baseline.median_active_weeks],
+                ].map(([label, value]) => (
+                  <div
+                    key={String(label)}
+                    className="flex items-baseline justify-between border-b border-dotted border-ink-100 py-1"
+                  >
+                    <span className="text-ink-500">{label}</span>
+                    <span className="ml-4 tabular text-ink-900">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Run summary */}
           <div className="col-span-12 border-t border-ink-100 pt-4">
             <div className="flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11.5px] text-ink-500">

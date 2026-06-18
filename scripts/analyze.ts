@@ -154,23 +154,16 @@ const WEIGHTS: Record<CCType, number> = {
 };
 
 // ---------------------------------------------------------------------------
-// ISO week
+// Window-relative week (max 13 for a 90-day window)
+// ISO weeks can span 14 calendar weeks for a 90-day range depending on
+// where the start day falls. Using window-relative indices avoids that.
 // ---------------------------------------------------------------------------
 
-function isoWeek(dateStr: string): string {
-  const d = new Date(dateStr);
-  d.setUTCHours(0, 0, 0, 0);
-  d.setUTCDate(d.getUTCDate() + 3 - ((d.getUTCDay() + 6) % 7));
-  const week1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 4));
-  const weekNum =
-    1 +
-    Math.round(
-      ((d.getTime() - week1.getTime()) / 86400000 -
-        3 +
-        ((week1.getUTCDay() + 6) % 7)) /
-        7
-    );
-  return `${d.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+let _windowStartMs = 0; // set in main() before aggregation
+
+function weekWithinWindow(mergedAt: string): string {
+  const ms = Math.max(0, new Date(mergedAt).getTime() - _windowStartMs);
+  return `wk${Math.floor(ms / (7 * 24 * 3600 * 1000))}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -196,7 +189,8 @@ interface AuthorStats {
   feat_count: number;
   fix_count: number;
   distinct_scopes: Set<string>;
-  active_weeks: Set<string>;
+  scope_counts: Map<string, number>;
+  active_weeks: Set<string>;       // window-relative keys, max 13
   merge_times_hours: number[];
   reviews_given: number;
   substantive_reviews_given: number;
@@ -215,6 +209,7 @@ function emptyStats(login: string): AuthorStats {
     feat_count: 0,
     fix_count: 0,
     distinct_scopes: new Set(),
+    scope_counts: new Map(),
     active_weeks: new Set(),
     merge_times_hours: [],
     reviews_given: 0,
@@ -257,8 +252,14 @@ function generateNarrative(
   const reviewedCount = stats.unique_authors_reviewed.size;
   const substReviews = stats.substantive_reviews_given;
 
-  // High leverage but moderate shipping
-  if (norms.leverage > 0.7 && norms.shipped < 0.5) {
+  // Leverage-dominant: reviews >> shipping (catches rafaeelaudibert-style patterns
+  // that don't reach the 0.7 threshold but are clearly review-specialist)
+  const leverageOverShipped = norms.leverage / Math.max(norms.shipped, 0.01);
+  if (leverageOverShipped >= 2.0 && norms.leverage > 0.4) {
+    return `Review leader — ${substReviews} substantive reviews for ${reviewedCount} engineers; ships steadily but leverage is the primary signal.`;
+  }
+  // High leverage, moderate shipping
+  if (norms.leverage >= 0.7 && norms.shipped < 0.5) {
     return `Heavy reviewer — substantive feedback on ${substReviews} PRs from ${reviewedCount} different authors, with moderate own shipping.`;
   }
   // Prolific shipper, light reviewer
@@ -303,6 +304,9 @@ function main(): void {
   const raw = JSON.parse(fs.readFileSync(RAW_PATH, "utf8")) as RawData;
   const allPrs = raw.prs;
 
+  // Set window start for week-within-window calculation
+  _windowStartMs = new Date(raw.window.start + "T00:00:00Z").getTime();
+
   console.log(`\nLoaded ${allPrs.length} PRs from data/raw.json`);
   console.log(`Window: ${raw.window.start} → ${raw.window.end}`);
   console.log(`Total in search index: ${raw.totalCount}`);
@@ -332,8 +336,11 @@ function main(): void {
     s.weighted_shipped_score += WEIGHTS[cc.type];
     if (cc.type === "feat") s.feat_count++;
     if (cc.type === "fix") s.fix_count++;
-    if (cc.scope) s.distinct_scopes.add(cc.scope);
-    s.active_weeks.add(isoWeek(pr.mergedAt));
+    if (cc.scope) {
+      s.distinct_scopes.add(cc.scope);
+      s.scope_counts.set(cc.scope, (s.scope_counts.get(cc.scope) ?? 0) + 1);
+    }
+    s.active_weeks.add(weekWithinWindow(pr.mergedAt));
 
     const mergeHours =
       (new Date(pr.mergedAt).getTime() - new Date(pr.createdAt).getTime()) /
@@ -384,6 +391,22 @@ function main(): void {
     console.log(
       "  (Pool empty — not enough data on this page. Run `npm run fetch:continue` to get the full dataset.)"
     );
+  }
+
+  // ── Pool medians ────────────────────────────────────────────────────────
+  const poolBaseline = {
+    median_prs_total: median(pool.map((s) => s.prs_total)),
+    median_feat: median(pool.map((s) => s.feat_count)),
+    median_fix: median(pool.map((s) => s.fix_count)),
+    median_reviews_given: median(pool.map((s) => s.reviews_given)),
+    median_substantive_reviews: median(pool.map((s) => s.substantive_reviews_given)),
+    median_distinct_scopes: median(pool.map((s) => s.distinct_scopes.size)),
+    median_active_weeks: median(pool.map((s) => s.active_weeks.size)),
+  };
+
+  console.log("\nPOOL BASELINE (medians across 121 contributors):");
+  for (const [k, v] of Object.entries(poolBaseline)) {
+    console.log(`  ${k.padEnd(30)} ${typeof v === "number" ? v.toFixed(1) : v}`);
   }
 
   // ── Normalization helpers ───────────────────────────────────────────────
@@ -502,7 +525,11 @@ function main(): void {
       fix_count: s.fix_count,
       distinct_scopes: [...s.distinct_scopes],
       distinct_scopes_count: s.distinct_scopes.size,
-      active_weeks: [...s.active_weeks].sort(),
+      active_weeks: [...s.active_weeks].sort((a, b) => {
+        const na = parseInt(a.slice(2), 10);
+        const nb = parseInt(b.slice(2), 10);
+        return na - nb;
+      }),
       active_weeks_count: s.active_weeks.size,
       reviews_given: s.reviews_given,
       substantive_reviews_given: s.substantive_reviews_given,
@@ -511,6 +538,10 @@ function main(): void {
         median(s.merge_times_hours).toFixed(1)
       ),
     },
+    primary_scopes: [...s.scope_counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([scope]) => scope),
     narrative: generateNarrative(s, norms),
   }));
 
@@ -523,6 +554,8 @@ function main(): void {
       reach: parseFloat(pillars.reach.toFixed(4)),
     },
   }));
+
+  const poolScores = scored.map((e) => parseFloat(e.score.toFixed(4)));
 
   const output = {
     generated_at: new Date().toISOString(),
@@ -545,9 +578,11 @@ function main(): void {
       score_formula:
         "0.40 * shipped_norm + 0.35 * leverage_norm + 0.25 * reach_norm",
       pool_filter: "prs_total >= 5 OR reviews_given >= 10",
+      pool_baseline: poolBaseline,
     },
     top_5: top5Output,
     top_30_for_chart: top30Output,
+    pool_scores: poolScores,
   };
 
   const publicDir = path.resolve(process.cwd(), "public");

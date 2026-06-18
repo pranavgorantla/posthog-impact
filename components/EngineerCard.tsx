@@ -117,9 +117,23 @@ export function EngineerCard({ entry, rank, pool }: EngineerCardProps) {
       </div>
 
       {/* Narrative */}
-      <p className="mb-4 line-clamp-2 text-[12.5px] italic leading-[1.45] text-ink-600">
+      <p className="mb-3 line-clamp-3 text-[12.5px] italic leading-[1.45] text-ink-600">
         {entry.narrative}
       </p>
+
+      {/* Primary scopes */}
+      {entry.primary_scopes?.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-1.5">
+          {entry.primary_scopes.map((scope) => (
+            <span
+              key={scope}
+              className="rounded-[3px] bg-ink-100 px-[6px] py-[2px] font-mono text-[10.5px] leading-none text-ink-600"
+            >
+              {scope}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* 2x2 stat grid */}
       <div className="mt-auto grid grid-cols-2 gap-x-3 gap-y-3 border-t border-ink-100 pt-4">
