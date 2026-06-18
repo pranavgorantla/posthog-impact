@@ -6,3 +6,7 @@ node_modules/
 data/raw.json
 data/raw_*.json
 *.log
+
+# Local dev artifacts
+.playwright-mcp/
+dashboard-*.png
