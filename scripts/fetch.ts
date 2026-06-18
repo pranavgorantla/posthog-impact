@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import * as fs from "fs";
 import * as path from "path";
+import { githubGraphQL } from "./lib/graphql.js";
 
 // ---------------------------------------------------------------------------
 // Bootstrap
@@ -97,12 +98,9 @@ interface RateLimit {
   resetAt: string;
 }
 
-interface GraphQLResponse {
-  data?: {
-    rateLimit: RateLimit;
-    search: SearchResult;
-  };
-  errors?: { message: string }[];
+interface GQLData {
+  rateLimit: RateLimit;
+  search: SearchResult;
 }
 
 interface RawOutput {
@@ -155,39 +153,14 @@ const QUERY = `
   }
 `;
 
-async function graphql(
-  cursor: string | null
-): Promise<{ rateLimit: RateLimit; search: SearchResult }> {
+async function fetchPage(cursor: string | null): Promise<GQLData> {
   const searchQuery = `repo:PostHog/posthog is:pr is:merged merged:>=${start}`;
-
-  const res = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: QUERY,
-      variables: { cursor, q: searchQuery },
-    }),
-  });
-
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`HTTP ${res.status}: ${body}`);
-  }
-
-  const json = (await res.json()) as GraphQLResponse;
-
-  if (json.errors?.length) {
-    throw new Error(`GraphQL errors: ${json.errors.map((e) => e.message).join("; ")}`);
-  }
-
-  if (!json.data) {
-    throw new Error(`Unexpected response: ${JSON.stringify(json)}`);
-  }
-
-  return json.data;
+  return githubGraphQL<GQLData>(
+    QUERY,
+    { cursor, q: searchQuery },
+    token!,
+    { label: "page-1" }
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -312,10 +285,10 @@ function printSanityReport(
 async function main(): Promise<void> {
   console.log("Fetching page 1 …");
 
-  const { rateLimit, search } = await graphql(null);
+  const { rateLimit, search } = await fetchPage(null);
 
   const prs = search.nodes.filter(
-    (n): n is PullRequest => n !== null && "number" in n
+    (n): n is PullRequest => n !== null && typeof n === "object" && "number" in n
   );
 
   const output: RawOutput = {

@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import * as fs from "fs";
 import * as path from "path";
+import { githubGraphQL, sleep } from "./lib/graphql.js";
 
 // ---------------------------------------------------------------------------
 // Bootstrap
@@ -20,7 +21,7 @@ if (!token || token === "PASTE_TOKEN_HERE") {
 }
 
 // ---------------------------------------------------------------------------
-// Types (shared with fetch.ts)
+// Types
 // ---------------------------------------------------------------------------
 
 interface Label {
@@ -32,15 +33,11 @@ interface IssueRef {
   labels: { nodes: Label[] };
 }
 
-interface ReviewComment {
-  totalCount: number;
-}
-
 interface Review {
   author: { login: string } | null;
   state: string;
   bodyText: string;
-  comments: ReviewComment;
+  comments: { totalCount: number };
 }
 
 interface PRFile {
@@ -75,16 +72,13 @@ interface RateLimit {
   resetAt: string;
 }
 
-interface GraphQLResponse {
-  data?: {
-    rateLimit: RateLimit;
-    search: {
-      issueCount: number;
-      pageInfo: PageInfo;
-      nodes: PullRequest[];
-    };
+interface GQLData {
+  rateLimit: RateLimit;
+  search: {
+    issueCount: number;
+    pageInfo: PageInfo;
+    nodes: PullRequest[];
   };
-  errors?: { message: string }[];
 }
 
 interface RawOutput {
@@ -137,43 +131,12 @@ const QUERY = `
   }
 `;
 
-async function graphql(
-  cursor: string,
-  searchQuery: string
-): Promise<{
-  rateLimit: RateLimit;
-  search: { issueCount: number; pageInfo: PageInfo; nodes: PullRequest[] };
-}> {
-  const res = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: QUERY,
-      variables: { cursor, q: searchQuery },
-    }),
+async function fetchPage(cursor: string, searchQuery: string): Promise<GQLData> {
+  return githubGraphQL<GQLData>(QUERY, { cursor, q: searchQuery }, token!, {
+    maxRetries: 5,
+    retryDelayMs: 30_000,
+    label: `cursor ${cursor.slice(0, 16)}…`,
   });
-
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`HTTP ${res.status}: ${body}`);
-  }
-
-  const json = (await res.json()) as GraphQLResponse;
-
-  if (json.errors?.length) {
-    throw new Error(
-      `GraphQL errors: ${json.errors.map((e) => e.message).join("; ")}`
-    );
-  }
-
-  if (!json.data) {
-    throw new Error(`Unexpected response: ${JSON.stringify(json)}`);
-  }
-
-  return json.data;
 }
 
 // ---------------------------------------------------------------------------
@@ -181,12 +144,11 @@ async function graphql(
 // ---------------------------------------------------------------------------
 
 const RAW_PATH = path.resolve(process.cwd(), "data", "raw.json");
+const PAGE_SLEEP_MS = 800;
 
 async function main(): Promise<void> {
   if (!fs.existsSync(RAW_PATH)) {
-    console.error(
-      "Error: data/raw.json not found. Run `npm run fetch` first."
-    );
+    console.error("Error: data/raw.json not found. Run `npm run fetch` first.");
     process.exit(1);
   }
 
@@ -198,7 +160,9 @@ async function main(): Promise<void> {
   }
 
   if (!stored.lastCursor) {
-    console.error("Error: lastCursor is null but hasNextPage is true — data may be corrupt.");
+    console.error(
+      "Error: lastCursor is null but hasNextPage is true — data may be corrupt."
+    );
     process.exit(1);
   }
 
@@ -206,8 +170,9 @@ async function main(): Promise<void> {
   const searchQuery = `repo:PostHog/posthog is:pr is:merged merged:>=${win.start}`;
 
   console.log(`Resuming from cursor: ${stored.lastCursor}`);
-  console.log(`Already have: ${stored.prs.length} PRs`);
-  console.log(`Total expected: ${stored.totalCount}`);
+  console.log(`Already have:         ${stored.prs.length} PRs`);
+  console.log(`Total expected:       ${stored.totalCount}`);
+  console.log(`Throttle:             ${PAGE_SLEEP_MS}ms between pages\n`);
 
   let cursor: string = stored.lastCursor;
   let hasNextPage = true;
@@ -215,12 +180,29 @@ async function main(): Promise<void> {
   const allPrs = [...stored.prs];
 
   while (hasNextPage) {
-    console.log(`\nFetching page ${pageNum} (cursor: ${cursor}) …`);
+    // Throttle before each request (GitHub secondary rate limit)
+    await sleep(PAGE_SLEEP_MS);
 
-    const { rateLimit, search } = await graphql(cursor, searchQuery);
+    console.log(`Fetching page ${pageNum} (cursor: ${cursor}) …`);
 
+    let data: GQLData;
+    try {
+      data = await fetchPage(cursor, searchQuery);
+    } catch (err) {
+      // State already saved on disk from the last successful page — abort cleanly.
+      console.error(
+        `\nFatal after retries on page ${pageNum}: ${err instanceof Error ? err.message : String(err)}`
+      );
+      console.error(
+        `State saved with ${allPrs.length} PRs at cursor ${cursor}. Re-run fetch:continue after the rate limit resets.`
+      );
+      process.exit(1);
+    }
+
+    const { rateLimit, search } = data;
     const newPrs = search.nodes.filter(
-      (n): n is PullRequest => n !== null && "number" in n
+      (n): n is PullRequest =>
+        n !== null && typeof n === "object" && "number" in n
     );
     allPrs.push(...newPrs);
 
@@ -228,11 +210,11 @@ async function main(): Promise<void> {
     const nextCursor = search.pageInfo.endCursor;
 
     console.log(
-      `  Got ${newPrs.length} PRs  |  total so far: ${allPrs.length}  |  ` +
-        `rate limit: ${rateLimit.remaining}/5000 (cost: ${rateLimit.cost}, resets: ${rateLimit.resetAt})`
+      `  +${newPrs.length} PRs  |  total: ${allPrs.length}/${search.issueCount}  |  ` +
+        `rate limit: ${rateLimit.remaining}/5000  cost: ${rateLimit.cost}  resets: ${rateLimit.resetAt}`
     );
 
-    // Write after every page so progress is never lost
+    // Write after every page — progress is never more than one page behind
     const updated: RawOutput = {
       fetchedAt: new Date().toISOString(),
       window: win,
@@ -245,7 +227,7 @@ async function main(): Promise<void> {
 
     if (rateLimit.remaining < 100) {
       console.error(
-        `\nAborting: rate limit too low (${rateLimit.remaining} remaining). ` +
+        `\nAborting: rate limit critically low (${rateLimit.remaining} remaining). ` +
           `Resets at ${rateLimit.resetAt}. Re-run after reset.`
       );
       process.exit(1);
@@ -257,7 +239,10 @@ async function main(): Promise<void> {
   }
 
   console.log(
-    `\nDone. Fetched all ${allPrs.length} PRs (of ${stored.totalCount} total). data/raw.json updated.`
+    `\n${"=".repeat(60)}\nFETCH COMPLETE\n${"=".repeat(60)}\n` +
+      `Fetched all ${allPrs.length} PRs (total index: ${stored.totalCount}).\n` +
+      `data/raw.json is up to date.\n\n` +
+      `Run \`npm run analyze\` to score contributors on the full dataset.`
   );
 }
 
