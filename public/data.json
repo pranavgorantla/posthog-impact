@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-06-18T00:27:30.135Z",
+  "window": {
+    "start": "2026-03-20",
+    "end": "2026-06-18"
+  },
+  "pool_size": 0,
+  "total_prs_analyzed": 50,
+  "bot_filter_excluded": 0,
+  "methodology": {
+    "weights": {
+      "feat": 1,
+      "fix": 1,
+      "perf": 1,
+      "refactor": 0.6,
+      "revert": 0.6,
+      "chore": 0.2,
+      "docs": 0.2,
+      "test": 0.2,
+      "build": 0.2,
+      "ci": 0.2,
+      "style": 0.2,
+      "other": 0.3
+    },
+    "conventional_commit_types": [
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "revert",
+      "chore",
+      "docs",
+      "test",
+      "build",
+      "ci",
+      "style",
+      "other"
+    ],
+    "bot_patterns": [
+      "endsWith [bot]",
+      "endsWith -bot",
+      "endsWith -app",
+      "endsWith -apps",
+      "endsWith -actions",
+      "endsWith -ai",
+      "explicit list"
+    ],
+    "score_formula": "0.40 * shipped_norm + 0.35 * leverage_norm + 0.25 * reach_norm",
+    "pool_filter": "prs_total >= 5 OR reviews_given >= 10"
+  },
+  "top_5": [],
+  "top_30_for_chart": []
+}
