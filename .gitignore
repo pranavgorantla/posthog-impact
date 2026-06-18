@@ -10,3 +10,5 @@ data/raw_*.json
 # Local dev artifacts
 .playwright-mcp/
 dashboard-*.png
+.vercel
+agent-sessions/
