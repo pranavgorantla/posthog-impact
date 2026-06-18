@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-18T00:34:36.943Z",
+  "generated_at": "2026-06-18T00:58:49.914Z",
   "window": {
     "start": "2026-03-20",
     "end": "2026-06-18"
   },
-  "pool_size": 58,
-  "total_prs_analyzed": 939,
-  "bot_filter_excluded": 11,
+  "pool_size": 121,
+  "total_prs_analyzed": 8070,
+  "bot_filter_excluded": 651,
   "methodology": {
     "weights": {
       "feat": 1,
@@ -50,485 +50,812 @@
   },
   "top_5": [
     {
-      "login": "haacked",
-      "avatar_url": "https://github.com/haacked.png",
-      "score": 0.4124,
-      "pillars": {
-        "shipped": 0.0184,
-        "leverage": 0.8,
-        "reach": 0.5
-      },
-      "raw_metrics": {
-        "prs_total": 15,
-        "prs_by_type": {
-          "feat": 0,
-          "fix": 0,
-          "perf": 0,
-          "refactor": 0,
-          "revert": 0,
-          "chore": 0,
-          "docs": 0,
-          "test": 0,
-          "build": 0,
-          "ci": 0,
-          "style": 0,
-          "other": 15
-        },
-        "weighted_shipped_score": 4.5,
-        "feat_count": 0,
-        "fix_count": 0,
-        "distinct_scopes": [],
-        "distinct_scopes_count": 0,
-        "active_weeks": [
-          "2026-W24",
-          "2026-W25"
-        ],
-        "active_weeks_count": 2,
-        "reviews_given": 17,
-        "substantive_reviews_given": 11,
-        "unique_authors_reviewed": 9,
-        "median_time_to_merge_hours": 3.1
-      },
-      "narrative": "Heavy reviewer — substantive feedback on 11 PRs from 9 different authors, with moderate own shipping."
-    },
-    {
-      "login": "gantoine",
-      "avatar_url": "https://github.com/gantoine.png",
-      "score": 0.381,
-      "pillars": {
-        "shipped": 0.0037,
-        "leverage": 0.7273,
-        "reach": 0.5
-      },
-      "raw_metrics": {
-        "prs_total": 3,
-        "prs_by_type": {
-          "feat": 0,
-          "fix": 0,
-          "perf": 0,
-          "refactor": 0,
-          "revert": 0,
-          "chore": 0,
-          "docs": 0,
-          "test": 0,
-          "build": 0,
-          "ci": 0,
-          "style": 0,
-          "other": 3
-        },
-        "weighted_shipped_score": 0.9,
-        "feat_count": 0,
-        "fix_count": 0,
-        "distinct_scopes": [],
-        "distinct_scopes_count": 0,
-        "active_weeks": [
-          "2026-W24",
-          "2026-W25"
-        ],
-        "active_weeks_count": 2,
-        "reviews_given": 29,
-        "substantive_reviews_given": 5,
-        "unique_authors_reviewed": 15,
-        "median_time_to_merge_hours": 20
-      },
-      "narrative": "Heavy reviewer — substantive feedback on 5 PRs from 15 different authors, with moderate own shipping."
-    },
-    {
       "login": "Gilbert09",
       "avatar_url": "https://github.com/Gilbert09.png",
-      "score": 0.3602,
+      "score": 0.7534,
       "pillars": {
-        "shipped": 0.3333,
-        "leverage": 0.2909,
-        "reach": 0.5
+        "shipped": 1,
+        "leverage": 0.4386,
+        "reach": 0.7995
       },
       "raw_metrics": {
-        "prs_total": 272,
+        "prs_total": 512,
         "prs_by_type": {
-          "feat": 0,
-          "fix": 0,
+          "feat": 177,
+          "fix": 292,
           "perf": 0,
-          "refactor": 0,
+          "refactor": 9,
           "revert": 0,
-          "chore": 0,
+          "chore": 34,
           "docs": 0,
           "test": 0,
           "build": 0,
           "ci": 0,
           "style": 0,
-          "other": 272
+          "other": 0
         },
-        "weighted_shipped_score": 81.6,
-        "feat_count": 0,
-        "fix_count": 0,
-        "distinct_scopes": [],
-        "distinct_scopes_count": 0,
+        "weighted_shipped_score": 481.2,
+        "feat_count": 177,
+        "fix_count": 292,
+        "distinct_scopes": [
+          "data-warehouse",
+          "postgres",
+          "github",
+          "stripe",
+          "mysql",
+          "meta_ads",
+          "snowflake",
+          "shopify",
+          "bigquery",
+          "mssql",
+          "api",
+          "hubspot",
+          "google-search-console",
+          "appsflyer",
+          "redshift",
+          "data-imports",
+          "google_sheets",
+          "linkedin_ads",
+          "klaviyo",
+          "notion",
+          "mailerlite",
+          "clickhouse",
+          "cloudflare",
+          "mongodb",
+          "salesforce",
+          "linear",
+          "tiktok_ads",
+          "vitally",
+          "temporalio",
+          "bing_ads",
+          "sentry",
+          "webflow",
+          "mailgun",
+          "convex",
+          "google_ads",
+          "revenuecat",
+          "intercom",
+          "google_search_console",
+          "google-ads",
+          "reddit_ads",
+          "plain",
+          "mixpanel",
+          "data-pipelines",
+          "mailjet",
+          "workos",
+          "brevo",
+          "recharge",
+          "mcp",
+          "integrations",
+          "attio",
+          "clerk",
+          "tasks",
+          "hogql",
+          "linkedin-ads",
+          "nav",
+          "hog",
+          "data-warehoise",
+          "cdp",
+          "dev"
+        ],
+        "distinct_scopes_count": 59,
         "active_weeks": [
+          "2026-W12",
+          "2026-W13",
+          "2026-W14",
+          "2026-W15",
+          "2026-W16",
+          "2026-W17",
+          "2026-W18",
+          "2026-W20",
+          "2026-W21",
+          "2026-W22",
+          "2026-W23",
           "2026-W24",
           "2026-W25"
         ],
-        "active_weeks_count": 2,
-        "reviews_given": 19,
-        "substantive_reviews_given": 2,
-        "unique_authors_reviewed": 6,
-        "median_time_to_merge_hours": 14.8
+        "active_weeks_count": 13,
+        "reviews_given": 207,
+        "substantive_reviews_given": 29,
+        "unique_authors_reviewed": 42,
+        "median_time_to_merge_hours": 17.9
       },
-      "narrative": "Steady contributor — 272 PRs merged, primarily `other:` commits across 2 active weeks."
+      "narrative": "Feature builder across 59 areas of the codebase, active across 13 weeks."
     },
     {
-      "login": "rafaeelaudibert",
-      "avatar_url": "https://github.com/rafaeelaudibert.png",
-      "score": 0.3276,
+      "login": "pauldambra",
+      "avatar_url": "https://github.com/pauldambra.png",
+      "score": 0.7185,
       "pillars": {
-        "shipped": 0.0159,
-        "leverage": 0.5606,
-        "reach": 0.5
+        "shipped": 0.7813,
+        "leverage": 0.4457,
+        "reach": 1
       },
       "raw_metrics": {
-        "prs_total": 13,
+        "prs_total": 486,
         "prs_by_type": {
-          "feat": 0,
-          "fix": 0,
-          "perf": 0,
-          "refactor": 0,
-          "revert": 0,
-          "chore": 0,
+          "feat": 170,
+          "fix": 160,
+          "perf": 28,
+          "refactor": 40,
+          "revert": 6,
+          "chore": 79,
           "docs": 0,
-          "test": 0,
+          "test": 2,
           "build": 0,
-          "ci": 0,
+          "ci": 1,
           "style": 0,
-          "other": 13
+          "other": 0
         },
-        "weighted_shipped_score": 3.9,
-        "feat_count": 0,
-        "fix_count": 0,
-        "distinct_scopes": [],
-        "distinct_scopes_count": 0,
+        "weighted_shipped_score": 402,
+        "feat_count": 170,
+        "fix_count": 160,
+        "distinct_scopes": [
+          "skills",
+          "taxonomic-filter",
+          "insights",
+          "replay",
+          "visual_review",
+          "mcp-analytics",
+          "web_analytics",
+          "homepage",
+          "visual-review",
+          "search",
+          "hobby",
+          "sharing",
+          "charts",
+          "frontend",
+          "persons",
+          "navigation",
+          "conversations",
+          "ci",
+          "user_interviews",
+          "billing",
+          "auth",
+          "clickhouse",
+          "annotations",
+          "error-tracking",
+          "max",
+          "alerts",
+          "llma",
+          "data-warehouse",
+          "logs",
+          "experiments",
+          "endpoints",
+          "web-analytics",
+          "app",
+          "layout",
+          "onboarding",
+          "navbar",
+          "user-interviews",
+          "caching",
+          "settings",
+          "replay-vision",
+          "growth",
+          "subscriptions",
+          "stamphog",
+          "storybook",
+          "mcp",
+          "livestream",
+          "flags",
+          "organization",
+          "max-ai",
+          "api",
+          "ux",
+          "tasks",
+          "admin",
+          "inbox",
+          "heatmaps",
+          "lemon-ui",
+          "scenes",
+          "observability",
+          "lemon-table",
+          "exporter",
+          "schema",
+          "shared-views",
+          "deps",
+          "product-tours",
+          "stories",
+          "team",
+          "members",
+          "home-view",
+          "surveys",
+          "event-definitions",
+          "preflight",
+          "hog-functions",
+          "taxonomy",
+          "perf",
+          "sql-editor",
+          "kea",
+          "monaco",
+          "ai",
+          "popover",
+          "dashboards",
+          "comments",
+          "hogql",
+          "activity",
+          "events",
+          "funnels",
+          "phai",
+          "paths",
+          "analytics"
+        ],
+        "distinct_scopes_count": 88,
         "active_weeks": [
+          "2026-W12",
+          "2026-W13",
+          "2026-W14",
+          "2026-W15",
+          "2026-W16",
+          "2026-W17",
+          "2026-W18",
+          "2026-W19",
+          "2026-W20",
+          "2026-W21",
+          "2026-W22",
+          "2026-W23",
           "2026-W24",
           "2026-W25"
         ],
-        "active_weeks_count": 2,
-        "reviews_given": 15,
-        "substantive_reviews_given": 5,
-        "unique_authors_reviewed": 10,
-        "median_time_to_merge_hours": 3
+        "active_weeks_count": 14,
+        "reviews_given": 207,
+        "substantive_reviews_given": 18,
+        "unique_authors_reviewed": 50,
+        "median_time_to_merge_hours": 7.2
       },
-      "narrative": "Steady contributor — 13 PRs merged, primarily `other:` commits across 2 active weeks."
+      "narrative": "Feature builder across 88 areas of the codebase, active across 14 weeks."
     },
     {
       "login": "sampennington",
       "avatar_url": "https://github.com/sampennington.png",
-      "score": 0.3218,
+      "score": 0.4765,
       "pillars": {
-        "shipped": 0.0306,
-        "leverage": 0.5273,
-        "reach": 0.5
+        "shipped": 0.4817,
+        "leverage": 0.2955,
+        "reach": 0.7216
       },
       "raw_metrics": {
-        "prs_total": 25,
+        "prs_total": 313,
         "prs_by_type": {
-          "feat": 0,
-          "fix": 0,
+          "feat": 105,
+          "fix": 102,
+          "perf": 5,
+          "refactor": 23,
+          "revert": 1,
+          "chore": 69,
+          "docs": 2,
+          "test": 5,
+          "build": 0,
+          "ci": 0,
+          "style": 0,
+          "other": 1
+        },
+        "weighted_shipped_score": 241.9,
+        "feat_count": 105,
+        "fix_count": 102,
+        "distinct_scopes": [
+          "mcp",
+          "quill-charts",
+          "ci",
+          "hog-charts",
+          "llma",
+          "charts",
+          "mcp-analytics",
+          "revenue-analytics",
+          "surveys",
+          "insights",
+          "playwright",
+          "quill",
+          "mcp_analytics",
+          "onboarding",
+          "actions",
+          "funnels",
+          "lemon-ui",
+          "dashboards",
+          "taxonomic-filter",
+          "notebooks",
+          "retention",
+          "hogql",
+          "test",
+          "trends",
+          "popover",
+          "catalog",
+          "data-warehouse",
+          "observability",
+          "layout",
+          "persons",
+          "insight-caching",
+          "activity",
+          "paths",
+          "analytics",
+          "events",
+          "ActionFilterRow",
+          "filters",
+          "metalytics",
+          "tests"
+        ],
+        "distinct_scopes_count": 39,
+        "active_weeks": [
+          "2026-W12",
+          "2026-W13",
+          "2026-W14",
+          "2026-W15",
+          "2026-W16",
+          "2026-W17",
+          "2026-W18",
+          "2026-W19",
+          "2026-W20",
+          "2026-W21",
+          "2026-W22",
+          "2026-W23",
+          "2026-W24",
+          "2026-W25"
+        ],
+        "active_weeks_count": 14,
+        "reviews_given": 149,
+        "substantive_reviews_given": 20,
+        "unique_authors_reviewed": 28,
+        "median_time_to_merge_hours": 7.7
+      },
+      "narrative": "Wide-reaching contributor — touches 39 distinct areas over 14 active weeks."
+    },
+    {
+      "login": "webjunkie",
+      "avatar_url": "https://github.com/webjunkie.png",
+      "score": 0.4537,
+      "pillars": {
+        "shipped": 0.2676,
+        "leverage": 0.467,
+        "reach": 0.733
+      },
+      "raw_metrics": {
+        "prs_total": 227,
+        "prs_by_type": {
+          "feat": 46,
+          "fix": 70,
+          "perf": 5,
+          "refactor": 5,
+          "revert": 4,
+          "chore": 93,
+          "docs": 2,
+          "test": 0,
+          "build": 0,
+          "ci": 1,
+          "style": 0,
+          "other": 1
+        },
+        "weighted_shipped_score": 145.9,
+        "feat_count": 46,
+        "fix_count": 70,
+        "distinct_scopes": [
+          "docs",
+          "devex",
+          "ci",
+          "stamphog",
+          "mcp",
+          "api",
+          "flags",
+          "common",
+          "db",
+          "error-tracking",
+          "docker",
+          "storage",
+          "playwright",
+          "admin",
+          "visual_review",
+          "visual-review",
+          "data-warehouse",
+          "logs",
+          "signals",
+          "openapi",
+          "product-analytics",
+          "web_analytics",
+          "hogli",
+          "dev",
+          "scoping",
+          "semgrep",
+          "devenv",
+          "models",
+          "quill",
+          "tasks",
+          "deps",
+          "worker",
+          "storybook",
+          "visual",
+          "ducklake",
+          "dashboards",
+          "devcontainer",
+          "messaging",
+          "surveys",
+          "links",
+          "limiters"
+        ],
+        "distinct_scopes_count": 41,
+        "active_weeks": [
+          "2026-W12",
+          "2026-W13",
+          "2026-W14",
+          "2026-W15",
+          "2026-W16",
+          "2026-W17",
+          "2026-W18",
+          "2026-W19",
+          "2026-W20",
+          "2026-W21",
+          "2026-W22",
+          "2026-W23",
+          "2026-W24",
+          "2026-W25"
+        ],
+        "active_weeks_count": 14,
+        "reviews_given": 180,
+        "substantive_reviews_given": 32,
+        "unique_authors_reviewed": 44,
+        "median_time_to_merge_hours": 13.1
+      },
+      "narrative": "Wide-reaching contributor — touches 41 distinct areas over 14 active weeks."
+    },
+    {
+      "login": "rafaeelaudibert",
+      "avatar_url": "https://github.com/rafaeelaudibert.png",
+      "score": 0.4528,
+      "pillars": {
+        "shipped": 0.179,
+        "leverage": 0.6073,
+        "reach": 0.6745
+      },
+      "raw_metrics": {
+        "prs_total": 116,
+        "prs_by_type": {
+          "feat": 46,
+          "fix": 28,
           "perf": 0,
-          "refactor": 0,
+          "refactor": 12,
           "revert": 0,
-          "chore": 0,
+          "chore": 30,
           "docs": 0,
           "test": 0,
           "build": 0,
           "ci": 0,
           "style": 0,
-          "other": 25
+          "other": 0
         },
-        "weighted_shipped_score": 7.5,
-        "feat_count": 0,
-        "fix_count": 0,
-        "distinct_scopes": [],
-        "distinct_scopes_count": 0,
+        "weighted_shipped_score": 87.2,
+        "feat_count": 46,
+        "fix_count": 28,
+        "distinct_scopes": [
+          "signals",
+          "integrations",
+          "max",
+          "storybook",
+          "feature-flags",
+          "revenue_analytics",
+          "mcp",
+          "growth",
+          "web-analytics",
+          "oauth",
+          "legal_documents",
+          "quill",
+          "flags",
+          "search",
+          "settings",
+          "dags",
+          "health-alerts",
+          "health-checks",
+          "health",
+          "error-tracking",
+          "api",
+          "hog-functions",
+          "temporal",
+          "revenue-analytics",
+          "legal-docs",
+          "ai",
+          "cli",
+          "visual-review",
+          "navigation",
+          "semgrep",
+          "login",
+          "legal-documents",
+          "subscriptions",
+          "hogli",
+          "admin",
+          "stripe-app",
+          "actions"
+        ],
+        "distinct_scopes_count": 37,
         "active_weeks": [
+          "2026-W12",
+          "2026-W13",
+          "2026-W14",
+          "2026-W15",
+          "2026-W16",
+          "2026-W17",
+          "2026-W19",
+          "2026-W20",
+          "2026-W21",
+          "2026-W22",
+          "2026-W23",
           "2026-W24",
           "2026-W25"
         ],
-        "active_weeks_count": 2,
-        "reviews_given": 19,
-        "substantive_reviews_given": 5,
-        "unique_authors_reviewed": 9,
-        "median_time_to_merge_hours": 2.4
+        "active_weeks_count": 13,
+        "reviews_given": 273,
+        "substantive_reviews_given": 67,
+        "unique_authors_reviewed": 41,
+        "median_time_to_merge_hours": 11.5
       },
-      "narrative": "Steady contributor — 25 PRs merged, primarily `other:` commits across 2 active weeks."
+      "narrative": "Steady contributor — 116 PRs merged, primarily `feat:` commits across 13 active weeks."
     }
   ],
   "top_30_for_chart": [
     {
-      "login": "haacked",
-      "score": 0.4124,
-      "pillars": {
-        "shipped": 0.0184,
-        "leverage": 0.8,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "gantoine",
-      "score": 0.381,
-      "pillars": {
-        "shipped": 0.0037,
-        "leverage": 0.7273,
-        "reach": 0.5
-      }
-    },
-    {
       "login": "Gilbert09",
-      "score": 0.3602,
+      "score": 0.7534,
       "pillars": {
-        "shipped": 0.3333,
-        "leverage": 0.2909,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "rafaeelaudibert",
-      "score": 0.3276,
-      "pillars": {
-        "shipped": 0.0159,
-        "leverage": 0.5606,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "sampennington",
-      "score": 0.3218,
-      "pillars": {
-        "shipped": 0.0306,
-        "leverage": 0.5273,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "andrewm4894",
-      "score": 0.3061,
-      "pillars": {
-        "shipped": 0.0417,
-        "leverage": 0.4697,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "webjunkie",
-      "score": 0.3042,
-      "pillars": {
-        "shipped": 0.0184,
-        "leverage": 0.4909,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "skoob13",
-      "score": 0.2977,
-      "pillars": {
-        "shipped": 0.0208,
-        "leverage": 0.4697,
-        "reach": 0.5
+        "shipped": 1,
+        "leverage": 0.4386,
+        "reach": 0.7995
       }
     },
     {
       "login": "pauldambra",
-      "score": 0.2737,
+      "score": 0.7185,
       "pillars": {
-        "shipped": 0.0588,
-        "leverage": 0.3576,
-        "reach": 0.5
+        "shipped": 0.7813,
+        "leverage": 0.4457,
+        "reach": 1
       }
     },
     {
-      "login": "TueHaulund",
-      "score": 0.2449,
+      "login": "sampennington",
+      "score": 0.4765,
       "pillars": {
-        "shipped": 0.0159,
-        "leverage": 0.3242,
-        "reach": 0.5
+        "shipped": 0.4817,
+        "leverage": 0.2955,
+        "reach": 0.7216
       }
     },
     {
-      "login": "danielcarletti",
-      "score": 0.2433,
+      "login": "webjunkie",
+      "score": 0.4537,
       "pillars": {
-        "shipped": 0.0306,
-        "leverage": 0.303,
-        "reach": 0.5
+        "shipped": 0.2676,
+        "leverage": 0.467,
+        "reach": 0.733
+      }
+    },
+    {
+      "login": "rafaeelaudibert",
+      "score": 0.4528,
+      "pillars": {
+        "shipped": 0.179,
+        "leverage": 0.6073,
+        "reach": 0.6745
+      }
+    },
+    {
+      "login": "haacked",
+      "score": 0.451,
+      "pillars": {
+        "shipped": 0.1505,
+        "leverage": 0.6957,
+        "reach": 0.5893
+      }
+    },
+    {
+      "login": "andrewm4894",
+      "score": 0.4276,
+      "pillars": {
+        "shipped": 0.4686,
+        "leverage": 0.2814,
+        "reach": 0.5666
       }
     },
     {
       "login": "rnegron",
-      "score": 0.2247,
+      "score": 0.4233,
       "pillars": {
-        "shipped": 0.0159,
-        "leverage": 0.2667,
-        "reach": 0.5
+        "shipped": 0.2286,
+        "leverage": 0.4247,
+        "reach": 0.733
+      }
+    },
+    {
+      "login": "skoob13",
+      "score": 0.414,
+      "pillars": {
+        "shipped": 0.2919,
+        "leverage": 0.4527,
+        "reach": 0.5552
+      }
+    },
+    {
+      "login": "gantoine",
+      "score": 0.3896,
+      "pillars": {
+        "shipped": 0.064,
+        "leverage": 0.6435,
+        "reach": 0.5552
       }
     },
     {
       "login": "MattPua",
-      "score": 0.2133,
+      "score": 0.3549,
       "pillars": {
-        "shipped": 0.0245,
-        "leverage": 0.2242,
-        "reach": 0.5
+        "shipped": 0.2909,
+        "leverage": 0.2697,
+        "reach": 0.5763
       }
     },
     {
-      "login": "mayteio",
-      "score": 0.2101,
+      "login": "Piccirello",
+      "score": 0.3497,
       "pillars": {
-        "shipped": 0.0086,
-        "leverage": 0.2333,
-        "reach": 0.5
+        "shipped": 0.0549,
+        "leverage": 0.4372,
+        "reach": 0.6989
       }
     },
     {
-      "login": "ksvat",
-      "score": 0.2027,
+      "login": "lricoy",
+      "score": 0.3426,
       "pillars": {
-        "shipped": 0.0086,
-        "leverage": 0.2121,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "cat-ph",
-      "score": 0.1938,
-      "pillars": {
-        "shipped": 0.0049,
-        "leverage": 0.1909,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "tomasfarias",
-      "score": 0.1905,
-      "pillars": {
-        "shipped": 0.0074,
-        "leverage": 0.1788,
-        "reach": 0.5
+        "shipped": 0.2404,
+        "leverage": 0.2915,
+        "reach": 0.5779
       }
     },
     {
       "login": "mariusandra",
-      "score": 0.1863,
+      "score": 0.3375,
       "pillars": {
-        "shipped": 0.0074,
-        "leverage": 0.1667,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "carlos-marchal-ph",
-      "score": 0.1831,
-      "pillars": {
-        "shipped": 0.0074,
-        "leverage": 0.1576,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "andehen",
-      "score": 0.1813,
-      "pillars": {
-        "shipped": 0.0135,
-        "leverage": 0.1455,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "veryayskiy",
-      "score": 0.179,
-      "pillars": {
-        "shipped": 0.0184,
-        "leverage": 0.1333,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "adamleithp",
-      "score": 0.1789,
-      "pillars": {
-        "shipped": 0.0074,
-        "leverage": 0.1455,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "z0br0wn",
-      "score": 0.1756,
-      "pillars": {
-        "shipped": 0.0098,
-        "leverage": 0.1333,
-        "reach": 0.5
+        "shipped": 0.1578,
+        "leverage": 0.3977,
+        "reach": 0.5406
       }
     },
     {
       "login": "robbie-c",
-      "score": 0.1755,
+      "score": 0.3215,
       "pillars": {
-        "shipped": 0.0282,
-        "leverage": 0.1121,
-        "reach": 0.5
+        "shipped": 0.2143,
+        "leverage": 0.1675,
+        "reach": 0.7086
       }
     },
     {
-      "login": "MarconLP",
-      "score": 0.1751,
+      "login": "adamleithp",
+      "score": 0.3183,
       "pillars": {
-        "shipped": 0.0086,
-        "leverage": 0.1333,
-        "reach": 0.5
+        "shipped": 0.1668,
+        "leverage": 0.2643,
+        "reach": 0.6364
       }
     },
     {
-      "login": "georgemunyoro",
-      "score": 0.1746,
+      "login": "joshsny",
+      "score": 0.3181,
       "pillars": {
-        "shipped": 0.0074,
-        "leverage": 0.1333,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "marandaneto",
-      "score": 0.1726,
-      "pillars": {
-        "shipped": 0.0025,
-        "leverage": 0.1333,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "vdekrijger",
-      "score": 0.1709,
-      "pillars": {
-        "shipped": 0.0061,
-        "leverage": 0.1242,
-        "reach": 0.5
-      }
-    },
-    {
-      "login": "arnohillen",
-      "score": 0.1682,
-      "pillars": {
-        "shipped": 0.0098,
-        "leverage": 0.1121,
-        "reach": 0.5
+        "shipped": 0.1373,
+        "leverage": 0.3768,
+        "reach": 0.5252
       }
     },
     {
       "login": "yasen-posthog",
-      "score": 0.1672,
+      "score": 0.3159,
       "pillars": {
-        "shipped": 0.0074,
-        "leverage": 0.1121,
-        "reach": 0.5
+        "shipped": 0.163,
+        "leverage": 0.2752,
+        "reach": 0.6177
+      }
+    },
+    {
+      "login": "vdekrijger",
+      "score": 0.3096,
+      "pillars": {
+        "shipped": 0.1819,
+        "leverage": 0.276,
+        "reach": 0.5609
+      }
+    },
+    {
+      "login": "richardsolomou",
+      "score": 0.3073,
+      "pillars": {
+        "shipped": 0.1206,
+        "leverage": 0.3732,
+        "reach": 0.5138
+      }
+    },
+    {
+      "login": "a-lider",
+      "score": 0.3012,
+      "pillars": {
+        "shipped": 0.1495,
+        "leverage": 0.2919,
+        "reach": 0.5568
+      }
+    },
+    {
+      "login": "thmsobrmlr",
+      "score": 0.2974,
+      "pillars": {
+        "shipped": 0.2007,
+        "leverage": 0.2677,
+        "reach": 0.4935
+      }
+    },
+    {
+      "login": "TueHaulund",
+      "score": 0.2891,
+      "pillars": {
+        "shipped": 0.2015,
+        "leverage": 0.2277,
+        "reach": 0.5154
+      }
+    },
+    {
+      "login": "jonmcwest",
+      "score": 0.2885,
+      "pillars": {
+        "shipped": 0.3351,
+        "leverage": 0.0672,
+        "reach": 0.5235
+      }
+    },
+    {
+      "login": "MattBro",
+      "score": 0.2872,
+      "pillars": {
+        "shipped": 0.2196,
+        "leverage": 0.1769,
+        "reach": 0.5495
+      }
+    },
+    {
+      "login": "lucasheriques",
+      "score": 0.287,
+      "pillars": {
+        "shipped": 0.1454,
+        "leverage": 0.2939,
+        "reach": 0.5041
+      }
+    },
+    {
+      "login": "veryayskiy",
+      "score": 0.2835,
+      "pillars": {
+        "shipped": 0.2355,
+        "leverage": 0.1594,
+        "reach": 0.5341
+      }
+    },
+    {
+      "login": "arthurdedeus",
+      "score": 0.2833,
+      "pillars": {
+        "shipped": 0.1676,
+        "leverage": 0.2335,
+        "reach": 0.5381
+      }
+    },
+    {
+      "login": "sakce",
+      "score": 0.2704,
+      "pillars": {
+        "shipped": 0.13,
+        "leverage": 0.1991,
+        "reach": 0.595
+      }
+    },
+    {
+      "login": "eli-r-ph",
+      "score": 0.2672,
+      "pillars": {
+        "shipped": 0.1668,
+        "leverage": 0.1802,
+        "reach": 0.5495
       }
     }
   ]

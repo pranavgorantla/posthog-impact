@@ -65,11 +65,20 @@ const BOT_EXPLICIT = new Set([
   "codecov",
   "sentry-io",
   "posthog-contributions-bot",
-  // additional bots observed in page-1 data
+  // observed in page-1 data
   "chatgpt-codex-connector",
   "copilot-pull-request-reviewer",
   "greptile-apps",
   "veria-ai",
+  // observed in full dataset
+  "posthog",                    // org automation account
+  "scheduled-actions-posthog",  // scheduled CI bot
+  "posthog-js-upgrader",        // dependency bump bot
+  "tests-posthog",              // test runner bot
+  "clickhouse-sync-posthog",    // data sync bot
+  "github-advanced-security",   // GitHub security scanner
+  "copilot-swe-agent",          // GitHub Copilot SWE agent
+  "cursor",                     // Cursor AI IDE bot
 ]);
 
 function isBot(login: string | null | undefined): boolean {
@@ -91,7 +100,7 @@ function isBot(login: string | null | undefined): boolean {
 // ---------------------------------------------------------------------------
 
 const CC_RE =
-  /^(feat|fix|perf|refactor|revert|chore|docs|test|build|ci|style)(?:\(([^)]+)\))?(!):\s*(.+)/;
+  /^(feat|fix|perf|refactor|revert|chore|docs|test|build|ci|style)(?:\(([^)]+)\))?(!)?:\s*(.+)/;
 
 type CCType =
   | "feat"
